@@ -1,0 +1,49 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Board.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Pawn_enemy.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Main.gd" type="Script" id=4]
+[ext_resource path="res://HUD.tscn" type="PackedScene" id=5]
+[ext_resource path="res://EnemyManager.gd" type="Script" id=6]
+[ext_resource path="res://KingsGambit.gd" type="Script" id=7]
+[ext_resource path="res://Knight_enemy.tscn" type="PackedScene" id=8]
+
+[node name="Main" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="KingsGambit" type="Node" parent="."]
+script = ExtResource( 7 )
+
+[node name="Board" parent="." instance=ExtResource( 2 )]
+
+[node name="EnemyManager" type="Node" parent="Board"]
+script = ExtResource( 6 )
+
+[node name="Pawn_enemy" parent="Board/EnemyManager" instance=ExtResource( 3 )]
+position = Vector2( 704, 448 )
+speed = 200
+
+[node name="Pawn_enemy2" parent="Board/EnemyManager" instance=ExtResource( 3 )]
+position = Vector2( 448, 192 )
+speed = 200
+
+[node name="Pawn_enemy3" parent="Board/EnemyManager" instance=ExtResource( 3 )]
+position = Vector2( 1088, 832 )
+speed = 200
+
+[node name="Pawn_enemy4" parent="Board/EnemyManager" instance=ExtResource( 3 )]
+position = Vector2( 192, 576 )
+speed = 200
+
+[node name="Knight_enemy" parent="Board/EnemyManager" instance=ExtResource( 8 )]
+position = Vector2( 832, 192 )
+
+[node name="Knight_enemy2" parent="Board/EnemyManager" instance=ExtResource( 8 )]
+position = Vector2( 192, 320 )
+
+[node name="Player" parent="Board" instance=ExtResource( 1 )]
+
+[node name="HUD" parent="." instance=ExtResource( 5 )]
+[connection signal="death" from="Board/Player" to="." method="_on_Player_death"]
+[connection signal="hit" from="Board/Player" to="HUD" method="_on_Player_hit"]

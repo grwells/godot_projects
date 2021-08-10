@@ -1,0 +1,8 @@
+{ "pawn" : 
+	{
+		"type" : "PAWN",
+		"movement_direction" : ["north"],
+		"movement_options"  : [[0, 1]],
+		"special_moves" : [[0,2], [1,1], [-1,1]]
+	}
+}
